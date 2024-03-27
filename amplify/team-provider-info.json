@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "amplifynext03a6b978": {}
+      },
+      "api": {
+        "amplifynext": {}
+      },
+      "storage": {
+        "s3inventorybucket": {}
       }
     }
   }
