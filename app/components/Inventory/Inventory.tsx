@@ -170,7 +170,7 @@ const App = ({ signOut }: WithAuthenticatorProps) => {
 
     fetchStock(); // Fetch updated stock list
     setInventoryData(initialData); // Reset form fields
-    event.currentTarget.reset();
+    // event.currentTarget.reset();
   }
 
   async function deleteStock({ id }: { id: string }) {
@@ -283,32 +283,46 @@ const App = ({ signOut }: WithAuthenticatorProps) => {
             // variation="primary"
             name="save_button"
             value="Save"
-            className="w-44 text-white bg-green-300 outline-none h-14 rounded-lg mt-4 border-none hover:cursor-pointer hover:bg-green-500 transition duration-300 ease-in-out transform shadow-lg"
+            className="w-44 text-white bg-green-400 outline-none h-14 rounded-lg mt-4 border-none hover:cursor-pointer hover:bg-green-300 transition duration-300 ease-in-out transform shadow-lg"
           />
         </View>
       )}
-      <View className="InventoryTable">
-        <table className="Inventory_table">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Item Name</th>
-              <th>Item Description</th>
-              <th>Category</th>
-              <th>Unit Cost</th>
-              <th>Actions</th>
+      <View className="flex max-h-96 mt-20 w-full overflow-y-scroll">
+        <table
+          className="border-collapse mx-auto text-md h-auto shadow-md "
+          style={{ width: "98%" }}
+        >
+          <thead className="sticky top-0">
+            <tr className="bg-orange-400 text-white text-left">
+              <th className="text-center py-3 px-6">No</th>
+              <th className="text-center py-3 px-6">Item Name</th>
+              <th className="text-center py-3 px-6">Item Description</th>
+              <th className="text-center py-3 px-6">Category</th>
+              <th className="text-center py-3 px-6">Unit Cost</th>
+              <th className="text-center py-3 px-6">Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-gray-200">
             {Stock.map((stock, index) => {
               return (
-                <tr key={stock.id}>
-                  <td>{index + 1}</td>
-                  <td>{stock.item_name}</td>
-                  <td>{stock.item_description}</td>
-                  <td>{stock.category}</td>
-                  <td>{stock.unit_cost}</td>
-                  <td>
+                <tr
+                  key={stock.id}
+                  className={`border-b border-gray-100 ${
+                    index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                  } ${
+                    index === Stock.length - 1
+                      ? "border-b-2 border-orange-500"
+                      : ""
+                  } text-black overflow-y-auto`}
+                >
+                  <td className="text-center py-3 px-6">{index + 1}</td>
+                  <td className="text-center py-3 px-6">{stock.item_name}</td>
+                  <td className="text-center py-3 px-6">
+                    {stock.item_description}
+                  </td>
+                  <td className="text-center py-3 px-6">{stock.category}</td>
+                  <td className="text-center py-3 px-6">{stock.unit_cost}</td>
+                  <td className="text-center py-3 px-6">
                     <label>
                       <button
                         className="btn btn-edit"

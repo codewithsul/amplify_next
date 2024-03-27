@@ -8,14 +8,14 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-.InventoryTable {
+/* .InventoryTable {
   display: flex;
   overflow-y: scroll;
   max-height: 800px;
   width: 100%;
   margin-top: 85px;
-}
-.Inventory_table {
+} */
+/* .Inventory_table {
   border-collapse: collapse;
   margin: auto;
   font-size: 16px;
@@ -27,8 +27,8 @@
 .Inventory_table thead {
   position: sticky;
   top: 0;
-}
-.Inventory_table thead tr {
+} */
+/* .Inventory_table thead tr {
   background-color: #ffa500;
   color: #ffffff;
   text-align: left;
@@ -42,19 +42,19 @@
   text-align: center;
   vertical-align: middle;
   padding: 14px 25px;
-}
-.Inventory_table tbody tr {
+} */
+/* .Inventory_table tbody tr {
   border-bottom: 1px solid #dddddd;
   background-color: #f3f3f3;
   color: #141414;
   overflow-y: auto;
-}
-.Inventory_table tbody tr :nth-of-type(even) {
+} */
+/* .Inventory_table tbody tr :nth-of-type(even) {
   background-color: #f3f3f3;
 }
 .Inventory_table tbody tr:last-of-type {
   border-bottom: 2px solid #ffa500;
-}
+} */
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
