@@ -1,0 +1,56 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify0cf142d1102e4-staging-80527-authRole",
+      "UnauthRoleArn": "arn:aws:iam::247328889623:role/amplify-amplify0cf142d1102e4-staging-80527-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::247328889623:role/amplify-amplify0cf142d1102e4-staging-80527-authRole",
+      "Region": "ap-southeast-2",
+      "DeploymentBucketName": "amplify-amplify0cf142d1102e4-staging-80527-deployment",
+      "UnauthRoleName": "amplify-amplify0cf142d1102e4-staging-80527-unauthRole",
+      "StackName": "amplify-amplify0cf142d1102e4-staging-80527",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:247328889623:stack/amplify-amplify0cf142d1102e4-staging-80527/9b7b0480-eb47-11ee-89b5-061615a87fdd",
+      "AmplifyAppId": "d2rv95s1p3h9yg"
+    }
+  },
+  "auth": {
+    "amplifynext03a6b978": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify0cf142d1102e4-staging-80527-deployment/amplify-cfn-templates/auth/amplifynext03a6b978-cloudformation-template.json",
+        "logicalId": "authamplifynext03a6b978"
+      },
+      "lastPushTimeStamp": "2024-03-26T09:05:22.525Z",
+      "output": {
+        "UserPoolId": "ap-southeast-2_Lovg3Bj6U",
+        "AppClientIDWeb": "568r2e78fr1khqc85n4tjr8635",
+        "AppClientID": "65t7uka1o687l64cp1u7v33ihn",
+        "IdentityPoolId": "ap-southeast-2:489c4999-c459-4346-aec8-92b4af0d5405",
+        "UserPoolArn": "arn:aws:cognito-idp:ap-southeast-2:247328889623:userpool/ap-southeast-2_Lovg3Bj6U",
+        "IdentityPoolName": "amplifynext03a6b978_identitypool_03a6b978__staging",
+        "UserPoolName": "amplifynext03a6b978_userpool_03a6b978"
+      },
+      "lastPushDirHash": "849xZ0ZF6jfI77IQcUwQ9V/Nous="
+    }
+  }
+}
