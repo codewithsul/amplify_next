@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { FormEvent } from "react";
-import { InputHTMLAttributes } from "react";
 import { Amplify } from "aws-amplify";
 import "./Inventory.css";
 import "@aws-amplify/ui-react/styles.css";
@@ -186,43 +185,47 @@ const App = ({ signOut }: WithAuthenticatorProps) => {
   console.log("stock:", Stock);
 
   return (
-    <View className="App">
-      <View className="NavBar">
-        <View className="LeftButtonBlock">
-          <h2>Invetory</h2>
-          <label id="dashboard">DashBoard</label>
+    <View className="flex flex-col">
+      <View className="flex w-full h-20 bg-gray-300 shadow-lg">
+        <View className="flex items-center absolute h-14 w-1/2">
+          <h2 className="ml-8 text-4xl text-black">Invetory</h2>
+          <label className="absolute ml-8 mt-12">DashBoard</label>
         </View>
-        <View className="logOut">
+        <View className="absolute right-7 mt-5">
           <Button onClick={signOut}>Sign Out</Button>
         </View>
       </View>
-      <View className="button_block">
-        <View className="ButtonBlock">
+      <View>
+        <View className="flex items-center absolute left-1/2 h-15 w-1/2 bg-slate-400">
           <input
             type="button"
             value={addInventory ? "Close" : "Add Inventory"}
             name="add_inventory"
-            id="inventory_button"
+            className="absolute bg-orange-400 hover:bg-orange-300 hover:cursor-pointer h-12 w-48 rounded-md text-white top-6 text-lg outline-none border-none right-7 transition duration-300 ease-in-out transform shadow-lg"
             onClick={ExpandInventoryField}
           />
         </View>
       </View>
-      <View className="total_stock">
+      <View className="mt-5 ml-6">
         <label>Total stock : </label>
         {totalStock} {unit}
       </View>
-      <View className="total_stock_alert">
+      <View className="ml-6">
         <label>Stock status : </label>
         {Alert}
       </View>
       {addInventory && (
-        <View as="form" className="inventory_add_field" onSubmit={createStock}>
+        <View
+          as="form"
+          className="flex w-1/2 border border-gray-300 flex-col h-80 mt-24 py-5 px-6 ml-4"
+          onSubmit={createStock}
+        >
           <View className="Field">
             <label htmlFor="item_name">Item name :</label>
             <input
               type="text"
               name="item_name"
-              id="item"
+              className="h-10 mt-5 ml-2 w-44 text-center border-b border-black bg-white"
               placeholder="Item name"
               value={InventoryData.item_name || ""}
               onChange={handleInputChange}
@@ -233,7 +236,7 @@ const App = ({ signOut }: WithAuthenticatorProps) => {
             <input
               type="text"
               name="item_description"
-              id="item_description"
+              className="h-10 mt-2 w-56 border-b border-black text-center ml-2 bg-white"
               placeholder="Item description"
               value={InventoryData.item_description || ""}
               onChange={handleInputChange}
@@ -242,7 +245,7 @@ const App = ({ signOut }: WithAuthenticatorProps) => {
           <View className="Field">
             <label htmlFor="item_description">Category :</label>
             <select
-              className="select_category"
+              className="h-10 mt-5 ml-2 w-44 text-center rounded-md outline-none text-lg bg-white border border-black hover:cursor-pointer"
               name="category"
               value={category || ""}
               onChange={handleSelectChange}
@@ -269,7 +272,7 @@ const App = ({ signOut }: WithAuthenticatorProps) => {
             <input
               type="text"
               name="unit_cost"
-              id="unit_cost"
+              className="h-10 mt-2 ml-2 w-56 text-center border-b border-black bg-white"
               placeholder="Unit cost"
               value={InventoryData.unit_cost || ""}
               onChange={handleInputChange}
@@ -280,7 +283,7 @@ const App = ({ signOut }: WithAuthenticatorProps) => {
             // variation="primary"
             name="save_button"
             value="Save"
-            id="save_button"
+            className="w-44 text-white bg-green-300 outline-none h-14 rounded-lg mt-4 border-none hover:cursor-pointer hover:bg-green-500 transition duration-300 ease-in-out transform shadow-lg"
           />
         </View>
       )}
