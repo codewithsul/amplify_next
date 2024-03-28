@@ -2,7 +2,6 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { FormEvent } from "react";
 import { Amplify } from "aws-amplify";
-import "./Inventory.css";
 import "@aws-amplify/ui-react/styles.css";
 import {
   generateClient as apiClientGenerator,
@@ -37,11 +36,6 @@ interface Stock {
   category: string;
   unit_cost: string;
 }
-
-//defining custome type input
-// interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
-//   variation?: string;
-// }
 
 const apiClient = apiClientGenerator();
 
@@ -325,7 +319,7 @@ const App = ({ signOut }: WithAuthenticatorProps) => {
                   <td className="text-center py-3 px-6">
                     <label>
                       <button
-                        className="btn btn-edit"
+                        className="border-none text-white py-1 px-2 text-center rounded-md text-md my-1 mx-2 cursor-pointer bg-blue-500"
                         // variation="link"
                         onClick={() => fetchStockOnId(stock)}
                       >
@@ -333,7 +327,7 @@ const App = ({ signOut }: WithAuthenticatorProps) => {
                       </button>
                     </label>
                     <button
-                      className="btn btn-delete"
+                      className="border-none text-white py-1 px-2 text-center rounded-md text-md my-1 mx-2 cursor-pointer bg-red-500"
                       // variation="link"
                       onClick={() => deleteStock(stock)}
                     >
