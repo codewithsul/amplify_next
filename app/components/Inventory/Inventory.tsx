@@ -19,6 +19,7 @@ import {
 
 import type { WithAuthenticatorProps } from "@aws-amplify/ui-react";
 import config from "../../../src/amplifyconfiguration.json";
+import SearchBar from "../SearchBar/SearchBar";
 Amplify.configure(config);
 
 const initialData = {
@@ -45,6 +46,44 @@ type inventoryState = boolean;
 const App = ({ signOut }: WithAuthenticatorProps) => {
   const [Stock, setStock] = useState<Stock[]>([]);
 
+  //state for storing the filterd data
+  const [filteredData, setFilteredData] = useState<Stock[]>([]);
+
+  console.log("filteredData:", filteredData);
+
+  //search state storing
+  const [searchValue, setsearchValue] = useState<string>("");
+
+  //function to update the search state storing from the seachBar component
+  const handleSearch = (query: string) => {
+    setsearchValue(query);
+  };
+
+  //updating filteredData whenever searchValue changes
+  useEffect(() => {
+    const filtered = Stock.filter(
+      (item) =>
+        item.item_name.toLowerCase().includes(searchValue.toLowerCase()) ||
+        item.category.toLowerCase().includes(searchValue.toLowerCase()) ||
+        item.item_description
+          .toLocaleLowerCase()
+          .includes(searchValue.toLowerCase()) ||
+        item.unit_cost
+          .toLocaleLowerCase()
+          .includes(searchValue.toLocaleLowerCase())
+    );
+    setFilteredData(filtered);
+  }, [Stock, searchValue]);
+
+  //funtion to implement the search operation as the input is intered
+  const filtered = Stock.filter(
+    (item) =>
+      item.item_name.toLowerCase().includes(searchValue.toLowerCase()) ||
+      item.category.toLowerCase().includes(searchValue.toLowerCase())
+    // Add more conditions as needed
+  );
+
+  //defines the total number of stock available in the system
   const totalStock = Stock.length;
 
   const [Alert, setAlert] = useState("");
@@ -208,6 +247,7 @@ const App = ({ signOut }: WithAuthenticatorProps) => {
         <label>Stock status : </label>
         {Alert}
       </View>
+      <SearchBar onSearch={handleSearch} />
       {addInventory && (
         <View
           as="form"
@@ -297,46 +337,99 @@ const App = ({ signOut }: WithAuthenticatorProps) => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {Stock.map((stock, index) => {
-              return (
-                <tr
-                  key={stock.id}
-                  className={`border-b border-gray-100 ${
-                    index % 2 === 0 ? "bg-gray-100" : "bg-white"
-                  } ${
-                    index === Stock.length - 1
-                      ? "border-b-2 border-orange-500"
-                      : ""
-                  } text-black overflow-y-auto`}
-                >
-                  <td className="text-center py-3 px-6">{index + 1}</td>
-                  <td className="text-center py-3 px-6">{stock.item_name}</td>
-                  <td className="text-center py-3 px-6">
-                    {stock.item_description}
-                  </td>
-                  <td className="text-center py-3 px-6">{stock.category}</td>
-                  <td className="text-center py-3 px-6">{stock.unit_cost}</td>
-                  <td className="text-center py-3 px-6">
-                    <label>
-                      <button
-                        className="border-none text-white py-1 px-2 text-center rounded-md text-md my-1 mx-2 cursor-pointer bg-blue-500"
-                        // variation="link"
-                        onClick={() => fetchStockOnId(stock)}
-                      >
-                        <FaEdit />
-                      </button>
-                    </label>
-                    <button
-                      className="border-none text-white py-1 px-2 text-center rounded-md text-md my-1 mx-2 cursor-pointer bg-red-500"
-                      // variation="link"
-                      onClick={() => deleteStock(stock)}
+            {filteredData.length > 0
+              ? filteredData.map((filter, index) => {
+                  return (
+                    <tr
+                      key={filter.id}
+                      className={`border-b border-gray-100 ${
+                        index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                      } ${
+                        index === Stock.length - 1
+                          ? "border-b-2 border-orange-500"
+                          : ""
+                      } text-black overflow-y-auto`}
                     >
-                      <FaTrash />
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
+                      <td className="text-center py-3 px-6">{index + 1}</td>
+                      <td className="text-center py-3 px-6">
+                        {filter.item_name}
+                      </td>
+                      <td className="text-center py-3 px-6">
+                        {filter.item_description}
+                      </td>
+                      <td className="text-center py-3 px-6">
+                        {filter.category}
+                      </td>
+                      <td className="text-center py-3 px-6">
+                        {filter.unit_cost}
+                      </td>
+                      <td className="text-center py-3 px-6">
+                        <label>
+                          <button
+                            className="border-none text-white py-1 px-2 text-center rounded-md text-md my-1 mx-2 cursor-pointer bg-blue-500"
+                            // variation="link"
+                            onClick={() => fetchStockOnId(filter)}
+                          >
+                            <FaEdit />
+                          </button>
+                        </label>
+                        <button
+                          className="border-none text-white py-1 px-2 text-center rounded-md text-md my-1 mx-2 cursor-pointer bg-red-500"
+                          // variation="link"
+                          onClick={() => deleteStock(filter)}
+                        >
+                          <FaTrash />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })
+              : Stock.map((stock, index) => {
+                  return (
+                    <tr
+                      key={stock.id}
+                      className={`border-b border-gray-100 ${
+                        index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                      } ${
+                        index === Stock.length - 1
+                          ? "border-b-2 border-orange-500"
+                          : ""
+                      } text-black overflow-y-auto`}
+                    >
+                      <td className="text-center py-3 px-6">{index + 1}</td>
+                      <td className="text-center py-3 px-6">
+                        {stock.item_name}
+                      </td>
+                      <td className="text-center py-3 px-6">
+                        {stock.item_description}
+                      </td>
+                      <td className="text-center py-3 px-6">
+                        {stock.category}
+                      </td>
+                      <td className="text-center py-3 px-6">
+                        {stock.unit_cost}
+                      </td>
+                      <td className="text-center py-3 px-6">
+                        <label>
+                          <button
+                            className="border-none text-white py-1 px-2 text-center rounded-md text-md my-1 mx-2 cursor-pointer bg-blue-500"
+                            // variation="link"
+                            onClick={() => fetchStockOnId(stock)}
+                          >
+                            <FaEdit />
+                          </button>
+                        </label>
+                        <button
+                          className="border-none text-white py-1 px-2 text-center rounded-md text-md my-1 mx-2 cursor-pointer bg-red-500"
+                          // variation="link"
+                          onClick={() => deleteStock(stock)}
+                        >
+                          <FaTrash />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
           </tbody>
         </table>
       </View>
