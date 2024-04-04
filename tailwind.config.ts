@@ -16,6 +16,17 @@ const config: Config = {
       boxShadow: {
         orange: "0 0 10px rgba(255, 165, 0, 0.5)",
       },
+      width: {
+        "100": "25rem",
+        "110": "30rem",
+        "120": "36rem",
+      },
+      height: {
+        "100": "25rem",
+        "110": "30rem",
+        "120": "36rem",
+        "130": "39rem",
+      },
     },
   },
   plugins: [require("daisyui")],
