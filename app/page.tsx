@@ -18,12 +18,11 @@ const page = () => {
 
   return (
     <>
-      {Authenticated ? (
-        <Inventory />
+      {!LogInWithUsername ? (
+        <Recognition onClick={handleClick} />
       ) : (
         <>
-          <Recognition onClick={handleClick} />
-          {LogInWithUsername && <Inventory />}
+          <Inventory />
         </>
       )}
     </>
