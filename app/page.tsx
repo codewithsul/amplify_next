@@ -1,16 +1,14 @@
-"use client";
 import React, { useState } from "react";
 import Recognition from "./components/Recognition/Recognition";
 import Inventory from "./components/Inventory/Inventory";
 
-//Types
+// Types
 type Authenticate = boolean;
 type LogInWithUsername = boolean;
 
-const page = () => {
+const Page = () => {
   const [Authenticated, setAuthenticated] = useState<Authenticate>(false);
-  const [LogInWithUsername, setLoginWithUsername] =
-    useState<LogInWithUsername>(false);
+  const [LogInWithUsername, setLoginWithUsername] = useState<LogInWithUsername>(false);
 
   const handleClick = () => {
     setLoginWithUsername(true);
@@ -21,12 +19,10 @@ const page = () => {
       {!LogInWithUsername ? (
         <Recognition onClick={handleClick} />
       ) : (
-        <>
-          <Inventory />
-        </>
+        <Inventory />
       )}
     </>
   );
 };
 
-export default page;
+export default Page;

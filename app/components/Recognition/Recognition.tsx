@@ -62,7 +62,7 @@ const Recognition: React.FC<onClickProps> = ({ onClick }) => {
       <div className="flex absolute ml-80 mt-44 w-110 px-16 ">
         <Image src={WelcomeScreenImage} alt="Welcome" />
       </div>
-      <div className="flex flex-col h-130 w-100 ml-96 items-center">
+      <div className="flex flex-col h-150 w-100 ml-96 items-center">
         <p className="font-bold text-3xl text-slate-400">Face ID</p>
         <div className="flex flex-col h-120 w-100 bg-slate-200 items-center">
           <div className="flex h-80 w-96 bg-white mt-2">
@@ -101,6 +101,17 @@ const Recognition: React.FC<onClickProps> = ({ onClick }) => {
             </label>
           </div>
         </div>
+        <div className="w-64 h-16 mt-4">
+          <input
+            type="button"
+            value="Register face ID"
+            name="face_id"
+            className="flex bg-orange-400 rounded-xl shadow-lg w-64 h-16 justify-center text-lg text-white hover:cursor-pointer hover:bg-orange-300 transition duration-300 ease-out active:bg-orange-200"
+          />
+        </div>
+        <p className="text-orange-400 text-lg mt-4">
+          Upload or capture photo to login
+        </p>
       </div>
     </div>
   );
