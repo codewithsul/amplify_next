@@ -7,7 +7,6 @@ type Authenticate = boolean;
 type LogInWithUsername = boolean;
 
 const Page = () => {
-  const [Authenticated, setAuthenticated] = useState<Authenticate>(false);
   const [LogInWithUsername, setLoginWithUsername] = useState<LogInWithUsername>(false);
 
   const handleClick = () => {
